@@ -1,2 +1,2 @@
 # digitalJS
-learn javascript
+learn javascript and java
