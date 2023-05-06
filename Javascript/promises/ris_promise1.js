@@ -20,7 +20,7 @@ const myPromise = new Promise((resolve,reject)=>{
         else {
             let cell2 = row.insertCell(-1);
             cell2.innerHTML = " this the 1st timer with failure in number";
-            reject(`the number is low ${num}`);
+            reject(`   the number is high ${num}`);
         }      
     },4000);
 });
@@ -30,5 +30,6 @@ myPromise.then((result)=>{
     cell3.innerHTML = ` this is the output ${result}`;
 })
 .catch((err)=>{
-    console.log(err);
+    let cell3 = row.insertCell(-1);
+    cell3.innerHTML = ` this is the output ${err}`;
 })
