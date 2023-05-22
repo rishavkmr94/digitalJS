@@ -15,7 +15,7 @@ import com.User.UserInfo.model.User;
 import com.User.UserInfo.repository.userRepo;
 
 @Controller
-@RequestMapping("api/user")
+@RequestMapping("/api/user")
 public class userController {
     
     private final userRepo userrepo;
@@ -38,7 +38,7 @@ public class userController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);     
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody User user){
         String result =  userrepo.create(user);
         return new ResponseEntity<String>(result,HttpStatus.OK);

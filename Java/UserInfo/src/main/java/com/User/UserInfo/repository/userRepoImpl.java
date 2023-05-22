@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.User.UserInfo.model.User;
 
+@Component
 public class userRepoImpl implements userRepo{
 
     List<User> users = new ArrayList<>();
