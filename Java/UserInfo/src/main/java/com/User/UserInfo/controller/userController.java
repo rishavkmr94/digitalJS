@@ -24,9 +24,14 @@ public class userController {
         this.userrepo = userrepo ;
     }
 
-    @GetMapping
-    public List<User> findAll(){
-        return userrepo.findall();
+    //good practice to return response entity always
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> findAll(){
+        List<User> users = userrepo.findall();
+        if(users.isEmpty())
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+        return new ResponseEntity<>(users,HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -45,10 +50,10 @@ public class userController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable int id, @RequestBody User user){
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user){
         User existingUser =userrepo.update(id, user);
         if(existingUser != null)
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(existingUser,HttpStatus.OK);
         else
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

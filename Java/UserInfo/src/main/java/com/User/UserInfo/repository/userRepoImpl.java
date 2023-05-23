@@ -15,7 +15,7 @@ public class userRepoImpl implements userRepo{
 
     @Override
     public List<User> findall() {
-        return users;
+            return users;
     }
 
     @Override
@@ -27,7 +27,8 @@ public class userRepoImpl implements userRepo{
     @Override
     public String create(User user) {
         users.add(user);
-        return "User created successfully";
+        System.out.println(users);
+        return user.getFname()+ " User created successfully";
     }
 
     @Override
@@ -35,8 +36,8 @@ public class userRepoImpl implements userRepo{
         User existingUser = findById(id);
         if(existingUser != null){
             existingUser.setEmail(user.getEmail());
-            existingUser.setFName(user.getFName());
-            existingUser.setLName(user.getLName());
+            existingUser.setFname(user.getFname());
+            existingUser.setLname(user.getLname());
             return existingUser;
         }
         return null;
