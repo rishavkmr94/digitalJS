@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>UserInfo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="Userinfo.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Welcome to User dashboard!</h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#" id="create" onclick="$('#createDiv').toggle(); $('#findAllDiv').hide(); $('#findByidDiv').hide(); $('#updateDiv').hide();">Create User</a></li>
+                    <li><a href="#" id="findall" onclick="$('#findAllDiv').toggle(); $('#createDiv').hide(); $('#findByidDiv').hide(); $('#updateDiv').hide();">Find All</a></li>
+                    <li><a href="#" id="findbyid" onclick="$('#findByidDiv').toggle(); $('#createDiv').hide(); $('#findAllDiv').hide(); $('#updateDiv').hide();">Find By Id</a></li>
+                    <li><a href="#" id="update" onclick="$('#updateDiv').toggle(); $('#createDiv').hide(); $('#findAllDiv').hide(); $('#findByidDiv').hide();">Update User</a></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div id="createDiv" style="display: none;">
+            <!-- look for form i created earlier -->
+        <form id="createDivForm" onsubmit="createUser(); return false;">
+            <legend style="font-size: x-large;">Please provide the information below</legend>
+            <br>
+            <div id="createFirstNameDiv">
+                <label for="firstName">FirstName : </label>
+                <input type="text" id="createFirstName" name="firstName">
+            </div>
+            <br>
+            <div id="createLastNameDiv">
+                <label for="lastName">LastName : </label>
+                <input type="text" id="createLastName" name="lastName">
+            </div>
+            <br>
+            <div id="createIdDiv">
+                <label for="id">ID : </label>
+                <input type="text" id="createId" name="id">
+            </div>
+            <br>
+            <div id="createEmailDiv">
+                <label for="email">EMAIL : </label>
+                <input type="text" id="createEmail" name="email">
+            </div>
+            <br>
+            <button type="submit" id="createSubmit">Create User</button>
+        </form>
+        </div>
+        <div id="findAllDiv" style="display: none;">
+        
+        </div>
+        <div id="findByidDiv" style="display: none;">
+        
+        </div>
+        <div id="updateDiv" style="display: none;">
+        
+        </div>
+    </div>
+</body>
+</html>
