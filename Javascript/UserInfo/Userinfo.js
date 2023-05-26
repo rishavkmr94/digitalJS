@@ -8,21 +8,27 @@ async function createUser() {
     let id = document.getElementById("createId").value;
 
     let requestData = {
-        firstName: firstName,
-        lastName: lastName,
+        fname: firstName,
+        lname: lastName,
         email: email,
         id: id
     };
 
-    let response = await fetch('http://localhost:8080/api/user/create', {
-        method: 'POST',
-        headers: {
-            "content-type": "application/json"
-        },
-        body: JSON.stringify(requestData)
-    });
-    let responseData = await response.json();
-    console.log(responseData);
+    try {
+        let response = await fetch('http://localhost:8081/api/user/create', {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        });
+        let result = await response.text();
+        console.log(result);
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
 
 async function findAll() {

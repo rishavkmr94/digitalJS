@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,8 @@ public class userController {
     }
 
     //good practice to return response entity always
+    // to implement global cors, implement webmvcconfigurer with @configuration annotation
+    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public ResponseEntity<List<User>> findAll(){
         List<User> users = userrepo.findall();
@@ -34,6 +37,7 @@ public class userController {
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable int id){
         User user = userrepo.findById(id);
@@ -43,12 +47,14 @@ public class userController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);     
     }
 
+    @CrossOrigin(origins = "*",allowedHeaders = "*")
     @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody User user){
         String result =  userrepo.create(user);
         return new ResponseEntity<String>(result,HttpStatus.OK);
-    }
+    }   
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user){
         User existingUser =userrepo.update(id, user);
