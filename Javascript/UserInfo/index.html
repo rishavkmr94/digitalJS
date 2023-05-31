@@ -14,10 +14,10 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li><a href="#" id="create" onclick="$('#createDiv').toggle(); $('#findAllDiv').hide(); $('#findByidDiv').hide(); $('#updateDiv').hide();">Create User</a></li>
-                    <li><a href="#" id="findall" onclick="$('#findAllDiv').toggle(); $('#createDiv').hide(); $('#findByidDiv').hide(); $('#updateDiv').hide();">Find All</a></li>
-                    <li><a href="#" id="findbyid" onclick="$('#findByidDiv').toggle(); $('#createDiv').hide(); $('#findAllDiv').hide(); $('#updateDiv').hide();">Find By Id</a></li>
-                    <li><a href="#" id="update" onclick="$('#updateDiv').toggle(); $('#createDiv').hide(); $('#findAllDiv').hide(); $('#findByidDiv').hide();">Update User</a></li>
+                    <li><a href="#" id="create" onclick="$('#createDiv').toggle(); $('#findAllDiv').hide(); $('#findByIdDiv').hide(); $('#updateDiv').hide();">Create User</a></li>
+                    <li><a href="#" id="findall" onclick="$('#findAllDiv').toggle(); $('#createDiv').hide(); $('#findByIdDiv').hide(); $('#updateDiv').hide();">Find All</a></li>
+                    <li><a href="#" id="findbyid" onclick="$('#findByIdDiv').toggle(); $('#createDiv').hide(); $('#findAllDiv').hide(); $('#updateDiv').hide();">Find By Id</a></li>
+                    <li><a href="#" id="update" onclick="$('#updateDiv').toggle(); $('#createDiv').hide(); $('#findAllDiv').hide(); $('#findByIdDiv').hide();">Update User</a></li>
                 </ul>
             </div>
         </div>
@@ -62,8 +62,16 @@
             </tbody>
         </table>
         </div>
-        <div id="findByidDiv" style="display: none;">
-        
+        <div id="findByIdDiv" style="display: none;">
+            <form id="findByIdForm" onsubmit="findById();return false;">
+                <legend style="font-size: x-large;">Please provide the ID below - </legend>
+                <br>
+                <div><label>ID</label>
+                    <input type="text" id="findByIdInput" value="2">
+                </div>
+                <br>
+                <button>Find User</button>
+            </form>
         </div>
         <div id="updateDiv" style="display: none;">
         

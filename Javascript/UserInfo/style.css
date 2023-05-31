@@ -88,3 +88,10 @@ label {
     border-radius: 20px;
     border-spacing: 20px; /* to give space between elements of table*/
 }
+
+#findByIdDiv{
+    justify-content: center;
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+}

@@ -66,8 +66,17 @@ async function findAll() {
         ;
 }
 
-async function findById() {
+function findById() {
+    let input = document.getElementById("findByIdInput").value;
+    if (input) {
+        fetch("http://localhost:8081/api/user/" + input)
+            .then(response => response.json())
+            .then(result => {
 
+            })
+            .catch(err => console.log(err))
+            ;
+    }
 }
 
 async function updateUser() {
