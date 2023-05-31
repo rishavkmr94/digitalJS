@@ -23,7 +23,6 @@
         </div>
         <br>
         <div id="createDiv" style="display: none;">
-            <!-- look for form i created earlier -->
         <form id="createDivForm" onsubmit="createUser(); return false;">
             <legend style="font-size: x-large;">Please provide the information below</legend>
             <br>
@@ -51,7 +50,17 @@
         </form>
         </div>
         <div id="findAllDiv" style="display: none;">
-        
+        <table id="findAllTable">
+            <thead>
+                <th>ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+            </thead>
+            <br>
+            <tbody id="findAllBody">
+            </tbody>
+        </table>
         </div>
         <div id="findByidDiv" style="display: none;">
         

@@ -73,3 +73,18 @@ label {
     color: whitesmoke;
     flex-direction: column;
 }
+
+#findAllDiv{
+    text-align: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+#findAllTable{
+    margin: auto; /* to center the table*/
+    border: solid red;
+    color: whitesmoke;
+    padding: 20px;
+    border-radius: 20px;
+    border-spacing: 20px; /* to give space between elements of table*/
+}
