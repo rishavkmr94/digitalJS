@@ -2,3 +2,5 @@
 
 2. find nearest smaller/greater element using stack (used as tool for other questions) 
           -> Day 66 - DSA: Stacks 2: Nearest Smaller/Greater Element -> question 1
+
+3. construct binary tree from inOrder and postOrder Array -> Day 68 - DSA: Trees 1: Structure & Traversal -> question 3
