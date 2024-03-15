@@ -5,6 +5,8 @@
 
 3. construct binary tree from inOrder and postOrder Array -> Day 68 - DSA: Trees 1: Structure & Traversal -> question 3
 
-4. Morris tree inorder travesal in 1 space and its uses -> Day 72 - DSA: Trees 4: LCA + Morris Inorder Traversal -> quesion 1
+4. Deletion in binary search tree -> Day 70 - DSA: Trees 3: BST -> question 2
 
-5. implementation of hashmap( openhashing -> chaining) -> DSA: Hashing 3: Internal Implementation & Problems -> class
+5. Morris tree inorder travesal in 1 space and its uses -> Day 72 - DSA: Trees 4: LCA + Morris Inorder Traversal -> quesion 1
+
+6. implementation of hashmap( openhashing -> chaining) -> DSA: Hashing 3: Internal Implementation & Problems -> class
