@@ -1,0 +1,8 @@
+Q1. from customer table , print firstname, lastname , firstname for all the customers who have same surname?
+    there should not be any redundant data EX:- "rishav kumar rishav" - is wrong, also if there is "rishav kumar aman" then "aman kumar rishav" is not valid
+
+ans-> select c1.first_name,c1.last_name,c2.first_name from customer c1
+      join customer c2 on c1.last_name=c2.last_name
+      where c1.customer_id < c2.customer_id;
+
+      we use "<" operator to match only 1 entry , if we use "<>" then we get "rishav kumar aman" then "aman kumar rishav"
