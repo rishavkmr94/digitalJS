@@ -6,3 +6,12 @@ ans-> select c1.first_name,c1.last_name,c2.first_name from customer c1
       where c1.customer_id < c2.customer_id;
 
       we use "<" operator to match only 1 entry , if we use "<>" then we get "rishav kumar aman" then "aman kumar rishav"
+
+Q2. diffrence between count(*) and count(coulumn)
+
+ans->
+    select original_language_id,count(*) from film                      -------> this group the null coulumns also and count it;
+    group by original_language_id;
+
+    select original_language_id,count(original_language_id) from film   --------> this will count only non-null rows, so null column count wiil be 0;
+    group by original_language_id;
