@@ -1,3 +1,5 @@
+**--> order of execution --> SELECT-> FROM ->WHERE-> GROUP-> HAVING-> ORDER
+
 Q1. from customer table , print firstname, lastname , firstname for all the customers who have same surname?
     there should not be any redundant data EX:- "rishav kumar rishav" - is wrong, also if there is "rishav kumar aman" then "aman kumar rishav" is not valid
 
