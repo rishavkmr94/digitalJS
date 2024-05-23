@@ -17,3 +17,11 @@ ans->
 
     select original_language_id,count(original_language_id) from film   --------> this will count only non-null rows, so null column count wiil be 0;
     group by original_language_id;
+
+Q3. diffrence between IN and EXISTS
+
+ans-> in will check all the rows present in right(subquery) whereas exists will only check whether right(subquery) return true, if true
+        then select on left will be executed.
+
+    select * from students s where EXISTS ( select st_id from TAtable where st_id=s.id)
+    select * from students s where s.id IN (select st_id from TAtable where st_id is not null)
