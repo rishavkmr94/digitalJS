@@ -1,0 +1,3 @@
+@Entity - to define the model class as a table in db
+@Id - to define primary key in the model
+@MappedSuperClass - not to have a seperate table for base model
