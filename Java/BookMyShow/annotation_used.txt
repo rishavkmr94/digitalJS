@@ -1,3 +1,6 @@
 @Entity - to define the model class as a table in db
 @Id - to define primary key in the model
 @MappedSuperClass - not to have a seperate table for base model
+
+@Enumerated(value = EnumType.STRING) - to store enum within java and not in sql
+@ElementCollection - to store list of enum for a object ( movie has list of actors and actor is enum)
