@@ -13,6 +13,6 @@ import java.util.List;
 public class User extends BaseModel{
     private String username;
     private String email;
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Booking> bookings;
 }

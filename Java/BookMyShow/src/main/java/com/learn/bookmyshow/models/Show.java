@@ -11,14 +11,14 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "shows")
 public class Show extends BaseModel{
     private String showName;
     @ManyToOne
     private Movie movie;
     @ManyToOne
     private Screen screen;
-    @OneToMany
+    @OneToMany(mappedBy = "show")
     private List<ShowSeat> showSeats;
     private Date startTime;
 }

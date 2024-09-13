@@ -1,6 +1,11 @@
 @Entity - to define the model class as a table in db
 @Id - to define primary key in the model
 @MappedSuperClass - not to have a seperate table for base model
-
 @Enumerated(value = EnumType.STRING) - to store enum efficiently in sql
 @ElementCollection - to store list of enum for a object ( movie has list of actors and actor is enum)
+@OneToMany(mappedBy = "region") - who owns the relation, theatre will have column with region_id
+                                    and no extra mapping table will be created
+
+Solve basedmodel createTime and UpdateTime not coming issue -
+@EnableJpaAuditing - in the main application
+@EntityListeners(AuditingEntityListener.class) - in the base model

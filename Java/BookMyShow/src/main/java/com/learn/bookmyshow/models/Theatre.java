@@ -16,6 +16,6 @@ public class Theatre extends BaseModel{
     private String theatreName;
     @ManyToMany
     private List<Movie> movies;
-    @OneToMany
+    @OneToMany(mappedBy = "theatre")
     private List<Screen> screens;
 }
