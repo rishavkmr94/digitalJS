@@ -1,0 +1,6 @@
+@RequestMapping(name = "RISHAV", value = "/getProduct") - to create custom method like get,post
+
+@ComponentScan(basePackages = "com.learn")  -- if controller are in different package ,
+                               was stuck for long as mistakenly created controller in diffrent folder
+
+@profile -  we can use spring profiles to load an implementor of service from property file(loose coupling)
