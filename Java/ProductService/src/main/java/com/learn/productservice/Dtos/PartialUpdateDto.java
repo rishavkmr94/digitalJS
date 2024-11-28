@@ -3,10 +3,12 @@ package com.learn.productservice.Dtos;
 import com.learn.productservice.models.Product;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-public class CreateProductRequestDto {
+@ToString
+public class PartialUpdateDto {
     private String title;
     private String description;
     private double price;
@@ -14,8 +16,8 @@ public class CreateProductRequestDto {
 
     public Product toProduct() {
         Product product = new Product();
-        product.setTitle(this.title);
-        product.setDescription(this.description);
+        product.setTitle(this.getTitle());
+        product.setDescription(this.getDescription());
         product.setPrice(this.getPrice());
         product.setCategory(this.getCategory());
         return product;
