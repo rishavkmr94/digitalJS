@@ -5,6 +5,8 @@
 
 @profile -  we can use spring profiles to load an implementor(incase  of multiple implementors) of service
             from property file(loose coupling)
+@Qualifier("myService") - we mentioned this annotation to explicitly mention which controller will be using which service(
+                    ex: 2 controller azure and google and 2 service azureService and googleService)
 
 DTO object - a service method should never take DTO, instead exact attributes or models as multiple controller can call
              and DTO are specific to a call to controller.
