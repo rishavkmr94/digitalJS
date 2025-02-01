@@ -1,0 +1,14 @@
+@configuration - used to annotate a class to load all of its bean before the actual flow start
+
+Spring Security(Bcrypt password encoder) - used to encrypt password which can't be decrypted,
+    needs bean initialization in config file , to compare use .matches
+
+SecurityFilterChain in config - to disable spring security from auto create login page and permit all api
+    requests
+
+ @CreatedAt - to auto create the time of entity
+ @EnableJpaAuditing - add this a spring application for auto creation and updation of object
+ @EntityListeners(AuditingEntityListener.class) - add this at base model
+
+ MacAlgorithm - very popular algo to generate hs256 signing algorithm
+ Jwts builder - for generating JWT token using Secretkey and claims(payload)

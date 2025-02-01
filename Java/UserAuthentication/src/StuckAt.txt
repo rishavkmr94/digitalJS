@@ -1,0 +1,3 @@
+v1 -
+stuck with incorrect POM and application.properties of sql
+fixed after copying from teachers code

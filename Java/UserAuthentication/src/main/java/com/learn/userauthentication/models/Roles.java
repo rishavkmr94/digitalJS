@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "RoleTable")
+@Entity
 public class Roles extends BaseModel {
     private String value;
 }
