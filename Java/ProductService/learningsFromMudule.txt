@@ -3,7 +3,7 @@
 @ComponentScan(basePackages = "com.learn")  -- if controller are in different package ,
                                was stuck for long as mistakenly created controller in diffrent folder
 
-@profile -  we can use spring profiles to load an implementor(incase  of multiple implementors) of service
+@profile -  we can use spring profiles to load an implementor(incase of multiple implementors) of service
             from property file(loose coupling)
 @Qualifier("myService") - we mentioned this annotation to explicitly mention which controller will be using which service(
                     ex: 2 controller azure and google and 2 service azureService and googleService)

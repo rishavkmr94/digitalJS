@@ -4,17 +4,15 @@ import com.learn.productservice.Dtos.CreateProductRequestDto;
 import com.learn.productservice.Dtos.GetAllResponseDto;
 import com.learn.productservice.Dtos.GetProductDto;
 import com.learn.productservice.Dtos.PartialUpdateDto;
-import com.learn.productservice.Enums.ResponseStatus;
 import com.learn.productservice.exceptions.ProductNotFoundException;
 import com.learn.productservice.models.Product;
 import com.learn.productservice.services.ProductService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("products")
@@ -48,9 +46,9 @@ public class ProductController {
         return GetProductDto.fromProduct(productService.getProductById(id));
     }
 
-    @DeleteMapping
-    public ResponseStatus deleteProduct(@PathVariable Long id) {
-        return ResponseStatus.SUCCESS;
+    @DeleteMapping("/{id}")
+    public HttpStatus deleteProduct(@PathVariable Long id) throws ProductNotFoundException {
+        return productService.deleteProduct(id);
     }
 
     @PutMapping(value = "/{id}")
