@@ -1,5 +1,5 @@
 Install redis
-To run redis , go to terminal - redis-cli
+To run redis , go to terminal -> redis-cli
 it will run redis on 6379 port which can be checked in redis insights
 
 *** model class needs to implement serializable in order to store and retrieve from redis

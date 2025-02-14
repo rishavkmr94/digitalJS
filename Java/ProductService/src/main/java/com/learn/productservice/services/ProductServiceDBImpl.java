@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 @Profile("DB")
 public class ProductServiceDBImpl implements ProductService{
-
     @Override
     public Product createProduct(Product product) {
         System.out.println("this is DB implementation");
