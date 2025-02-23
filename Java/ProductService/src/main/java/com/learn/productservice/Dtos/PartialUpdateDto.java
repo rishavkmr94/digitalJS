@@ -1,5 +1,6 @@
 package com.learn.productservice.Dtos;
 
+import com.learn.productservice.models.Category;
 import com.learn.productservice.models.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ public class PartialUpdateDto {
     private String title;
     private String description;
     private double price;
-    private String category;
+    private Category category;
 
     public Product toProduct() {
         Product product = new Product();

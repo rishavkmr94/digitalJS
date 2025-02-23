@@ -1,5 +1,6 @@
 package com.learn.productservice.advices;
 
+import com.learn.productservice.exceptions.ProductAlreadyExistsException;
 import com.learn.productservice.exceptions.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,5 +14,10 @@ public class ExceptionAdvices {
     @ExceptionHandler(value = ProductNotFoundException.class)
     public ResponseEntity<Object> handleProductNotFoundException(ProductNotFoundException ex, WebRequest request) {
         return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = ProductAlreadyExistsException.class)
+    public ResponseEntity<Object> handleProductAlreadyExistsException(ProductAlreadyExistsException ex, WebRequest request) {
+        return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
     }
 }

@@ -1,18 +1,20 @@
 package com.learn.productservice.models;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
-@ToString
-public class Product implements Serializable {
-    private int id;
+@Entity
+public class Product extends BaseModel implements Serializable {
     private String title;
     private String description;
     private double price;
-    private String category;
+    @ManyToOne
+    private Category category;
 }

@@ -1,0 +1,3 @@
+*** I was saving product along with category in 1 request, which gives error -
+"save the transient instance before flushing"
+Fix - in product model,use - @ManyToOne(cascade = CascadeType.PERSIST)

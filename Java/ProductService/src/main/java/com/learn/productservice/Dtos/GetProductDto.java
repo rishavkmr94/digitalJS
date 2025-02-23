@@ -1,5 +1,6 @@
 package com.learn.productservice.Dtos;
 
+import com.learn.productservice.models.Category;
 import com.learn.productservice.models.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,11 +10,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class GetProductDto {
-    private int id;
+    private Long id;
     private String title;
     private String description;
     private double price;
-    private String category;
+    private Category category;
 
     public static GetProductDto fromProduct(Product product) {
         GetProductDto responseDto = new GetProductDto();
@@ -21,7 +22,11 @@ public class GetProductDto {
         responseDto.title = product.getTitle();
         responseDto.description = product.getDescription();
         responseDto.price = product.getPrice();
-        responseDto.category = product.getCategory();
+        Category category = new Category();
+        category.setId(product.getCategory().getId());
+        category.setName(product.getCategory().getName());
+        category.setDescription(product.getCategory().getDescription());
+        responseDto.category = category;
         return responseDto;
     }
 }

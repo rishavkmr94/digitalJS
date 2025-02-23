@@ -4,6 +4,7 @@ import com.learn.productservice.Dtos.CreateProductRequestDto;
 import com.learn.productservice.Dtos.GetAllResponseDto;
 import com.learn.productservice.Dtos.GetProductDto;
 import com.learn.productservice.Dtos.PartialUpdateDto;
+import com.learn.productservice.exceptions.ProductAlreadyExistsException;
 import com.learn.productservice.exceptions.ProductNotFoundException;
 import com.learn.productservice.models.Product;
 import com.learn.productservice.services.ProductService;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//task - create a repo method to get all products of category using _ feature of JPA
+//task - write a jpa query
+//task - write a native query ( only used in case of very complex operations or jpa not optimal)
 
 @RestController
 @RequestMapping("products")
@@ -24,7 +29,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public GetProductDto createProduct(@RequestBody CreateProductRequestDto createProductRequestDto) {
+    public GetProductDto createProduct(@RequestBody CreateProductRequestDto createProductRequestDto) throws ProductAlreadyExistsException {
         Product product = productService.createProduct(createProductRequestDto.toProduct());
         return GetProductDto.fromProduct(product);
     }
@@ -52,7 +57,7 @@ public class ProductController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody PartialUpdateDto partialUpdateDto) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody PartialUpdateDto partialUpdateDto) {
         productService.updateProduct(id,partialUpdateDto.toProduct());
         return ResponseEntity.ok(partialUpdateDto.toProduct());
     }
