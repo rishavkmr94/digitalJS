@@ -1,3 +1,13 @@
 *** I was saving product along with category in 1 request, which gives error -
 "save the transient instance before flushing"
 Fix - in product model,use - @ManyToOne(cascade = CascadeType.PERSIST)
+but this is not recommended, hard to debug, better to save category first and then product
+
+✅findAllByCategory_Name -> JPA provides _ similar to . in java
+  class product has category , category has name , single query will fetch all products of a category
+
+✅@Query("select p from Product p where p.id = :id")
+  findProductById(@Param("id") Long id) -> to write custom query in ORM format similar to sql format
+
+✅
+  used when need better optimisation than JPA inbuilt methods

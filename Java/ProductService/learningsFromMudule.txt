@@ -1,21 +1,29 @@
-@RequestMapping(name = "RISHAV", value = "/getProduct") - to create custom method like get,post
+✅@RequestMapping(name = "RISHAV", value = "/getProduct") - to create custom method like get,post
 
-@ComponentScan(basePackages = "com.learn")  -- if controller are in different package ,
+✅@ComponentScan(basePackages = "com.learn")  -- if controller are in different package ,
                                was stuck for long as mistakenly created controller in diffrent folder
 
-@profile -  we can use spring profiles to load an implementor(incase of multiple implementors) of service
+✅@profile -  we can use spring profiles to load an implementor(incase of multiple implementors) of service
             from property file(loose coupling)
-@Qualifier("myService") - we mentioned this annotation to explicitly mention which controller will be using which service(
+✅@Qualifier("myService") - we mentioned this annotation to explicitly mention which controller will be using which service(
                     ex: 2 controller azure and google and 2 service azureService and googleService)
 
-DTO object - a service method should never take DTO, instead exact attributes or models as multiple controller can call
+✅DTO object - a service method should never take DTO, instead exact attributes or models as multiple controller can call
              and DTO are specific to a call to controller.
 
-@configuration - used to create bean( object in spring container) to use it anywhere in api. EX- RestTTemplate by default is
+✅@configuration - used to create bean( object in spring container) to use it anywhere in api. EX- RestTTemplate by default is
                  not present as spring bean.we create config class.
 
-Type Erasure concept -  in "get all products service" , java will not know what to convert from rest call JSON response as
+✅Type Erasure concept -  in "get all products service" , java will not know what to convert from rest call JSON response as
                       type information used in generics is removed(erased) by the Java compiler during compilation.
 
-@ControllerAdvice - instead of writing catch in controller use this. using @ExceptionHandler , we define for each kind
+✅@ControllerAdvice - instead of writing catch in controller use this. using @ExceptionHandler , we define for each kind
                     of custom exception what needs to be sent back.
+
+✅ Use @PathVariable → When category name is part of the URL (e.g., /products/category/electronics).
+✅ Use @RequestParam → When category is optional and acts as a filter (e.g., /products?category=electronics).
+
+Generative AI for Software Development Skill Certificate - learn this from coursera
+
+✅fetch mode - LAZY and EAGER in db
+by default all collections(list/set/map) are LAZY, means they will be fetched only when accessed because these need joins which is slow.

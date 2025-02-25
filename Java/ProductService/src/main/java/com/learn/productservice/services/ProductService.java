@@ -6,6 +6,7 @@ import com.learn.productservice.models.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductService {
@@ -15,7 +16,11 @@ public interface ProductService {
 
     Product getProductById(Long id) throws ProductNotFoundException;
 
-    ResponseEntity<Product> updateProduct(Long id, Product product);
+    Product updateProduct(Long id, Product product) throws ProductNotFoundException;
 
     HttpStatus deleteProduct(Long id) throws ProductNotFoundException;
+
+    default List<Product> getAllProductsByCategoryName(String categoryName) {
+        return new ArrayList<Product>();
+    }
 }

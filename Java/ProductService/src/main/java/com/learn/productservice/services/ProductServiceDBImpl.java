@@ -46,22 +46,45 @@ public class ProductServiceDBImpl implements ProductService{
 
     @Override
     public List<Product> getAllProducts() {
-        return List.of();
+        List<Product> products = productRepository.findAll();
+        if (products.isEmpty()){
+            return new ArrayList<>();
+        }
+        else {
+            return products;
+        }
+    }
+
+    @Override
+    public List<Product> getAllProductsByCategoryName(String categoryName) {
+        Optional<List<Product>> products = productRepository.findAllByCategory_Name(categoryName);
+        return products.orElse(new ArrayList<>());
     }
 
     @Override
     public Product getProductById(Long id) throws ProductNotFoundException {
-        return null;
+        return productRepository.findById(id).orElseThrow(()->new ProductNotFoundException("Product not found"));
     }
 
     @Override
-    public ResponseEntity<Product> updateProduct(Long id, Product product) {
-        return null;
+    public Product updateProduct(Long id, Product product) throws ProductNotFoundException {
+        Optional<Product> product1 = productRepository.findById(id);
+        if(product1.isEmpty())throw new ProductNotFoundException("Product not found");
+        if (categoryRepository.findById(product.getCategory().getId()).isEmpty()){
+            Category category = new Category();
+            category.setName(product.getCategory().getName());
+            category.setDescription(product.getCategory().getDescription());
+            categoryRepository.save(category);
+        }
+        product.setId(id);
+        return productRepository.save(product);
     }
 
 
     @Override
-    public HttpStatus deleteProduct(Long id) {
-        return null;
+    public HttpStatus deleteProduct(Long id) throws ProductNotFoundException{
+        if (productRepository.findById(id).isEmpty()) throw new ProductNotFoundException("Product not found");
+        productRepository.customDeleteById(id);
+        return HttpStatus.OK;
     }
 }

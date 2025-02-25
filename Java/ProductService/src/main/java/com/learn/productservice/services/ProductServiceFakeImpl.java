@@ -56,11 +56,11 @@ public class ProductServiceFakeImpl implements ProductService {
     }
 
     @Override
-    public ResponseEntity<Product> updateProduct(Long id, Product product) {
+    public Product updateProduct(Long id, Product product) {
         product.setId(id);
         String url = "https://fakestoreapi.com/products/" + id;
         HttpEntity<Product> request = new HttpEntity<>(product);
-        return restTemplate.exchange(url, HttpMethod.PUT, request, Product.class);
+        return restTemplate.exchange(url, HttpMethod.PUT, request, Product.class).getBody();
     }
 
     @Override

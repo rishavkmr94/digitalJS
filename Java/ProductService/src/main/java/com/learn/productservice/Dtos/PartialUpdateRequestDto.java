@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PartialUpdateDto {
+public class PartialUpdateRequestDto {
     private String title;
     private String description;
     private double price;
@@ -20,7 +20,11 @@ public class PartialUpdateDto {
         product.setTitle(this.getTitle());
         product.setDescription(this.getDescription());
         product.setPrice(this.getPrice());
-        product.setCategory(this.getCategory());
+        Category category = new Category();
+        category.setId(this.getCategory().getId());
+        category.setName(this.getCategory().getName());
+        category.setDescription(this.getCategory().getDescription());
+        product.setCategory(category);
         return product;
     }
 }

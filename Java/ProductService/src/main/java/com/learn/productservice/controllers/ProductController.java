@@ -1,9 +1,6 @@
 package com.learn.productservice.controllers;
 
-import com.learn.productservice.Dtos.CreateProductRequestDto;
-import com.learn.productservice.Dtos.GetAllResponseDto;
-import com.learn.productservice.Dtos.GetProductDto;
-import com.learn.productservice.Dtos.PartialUpdateDto;
+import com.learn.productservice.Dtos.*;
 import com.learn.productservice.exceptions.ProductAlreadyExistsException;
 import com.learn.productservice.exceptions.ProductNotFoundException;
 import com.learn.productservice.models.Product;
@@ -15,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.ResponseEntity.ok;
+
 //task - create a repo method to get all products of category using _ feature of JPA
-//task - write a jpa query
+//task - write a jpa query not function
 //task - write a native query ( only used in case of very complex operations or jpa not optimal)
 
 @RestController
@@ -35,8 +34,16 @@ public class ProductController {
     }
 
     @GetMapping
-    public GetAllResponseDto getAllProducts() {
-        List<Product> products = productService.getAllProducts();
+    //http://localhost:8080/products?categoryName=category2
+    public GetAllResponseDto getAllProducts(@RequestParam(required = false) String categoryName) {
+        List<Product> products =null;
+        if(categoryName!=null){
+            products = productService.getAllProductsByCategoryName(categoryName);
+        }
+        else{
+            products = productService.getAllProducts();
+        }
+
         GetAllResponseDto getAllResponseDto = new GetAllResponseDto();
         List<GetProductDto> productDtos = new ArrayList<>();
         for (Product product : products) {
@@ -57,8 +64,8 @@ public class ProductController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody PartialUpdateDto partialUpdateDto) {
-        productService.updateProduct(id,partialUpdateDto.toProduct());
-        return ResponseEntity.ok(partialUpdateDto.toProduct());
+    public ResponseEntity<GetProductDto> updateProduct(@PathVariable Long id, @RequestBody PartialUpdateRequestDto partialUpdateDto) throws ProductNotFoundException {
+        Product product = productService.updateProduct(id,partialUpdateDto.toProduct());
+        return ok(GetProductDto.fromProduct(product));
     }
 }
