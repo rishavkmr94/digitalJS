@@ -1,6 +1,6 @@
 package com.learn.productservice.models;
 
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 public class Product extends BaseModel implements Serializable {
+    @Column(nullable = false, unique = true)
     private String title;
     private String description;
     private double price;

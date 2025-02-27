@@ -24,6 +24,3 @@
 ✅ Use @RequestParam → When category is optional and acts as a filter (e.g., /products?category=electronics).
 
 Generative AI for Software Development Skill Certificate - learn this from coursera
-
-✅fetch mode - LAZY and EAGER in db
-by default all collections(list/set/map) are LAZY, means they will be fetched only when accessed because these need joins which is slow.

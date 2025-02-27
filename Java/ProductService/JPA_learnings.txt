@@ -9,5 +9,28 @@ but this is not recommended, hard to debug, better to save category first and th
 ✅@Query("select p from Product p where p.id = :id")
   findProductById(@Param("id") Long id) -> to write custom query in ORM format similar to sql format
 
-✅
+✅native query - @Query(value = "select * from product where id = :id", nativeQuery = true)
   used when need better optimisation than JPA inbuilt methods
+
+✅@Transactional - to rollback the transaction if any exception occurs
+
+✅fetch type - When will an attribute be fetched,LAZY and EAGER in db
+by default all collections(list/set/map) are LAZY, means they will be fetched only when accessed because these need joins which is slow.
+eager only needed when we are sure that we will need all the data(small table), else LAZY is better
+
+✅fetch mode - how to fetch the data, SELECT, JOIN, SUBSELECT
+SELECT - fetches the data in separate query, JOIN - fetches the data in single query, SUBSELECT - fetches the data in single query but in subquery
+but JPA ignores this and its not very recommended
+
+✅JPA buddy - very powerful tool, show model class details like fetch type which can be changed with clicks
+
+✅ORM can't handle versioning like GIT, it can't delete the old version and create new version, it will create new version and keep old version
+✅*** schema versioning libraries(flyway , liquibase)- flyway used 99% of time, liquibase is used when we need to rollback the changes
+  flyway - create a folder in resources/db/migration and create sql files with version number and flyway will run them in order
+  liquibase - create a file in resources/liquibase/changelog.xml and write changes in xml format
+
+✅***schema versioning - like in GIt, when we need to change the schema of db, we need to keep track of changes, so that we can rollback if needed
+  so in production,we use schema versioning to more control over db changes, jpa can validate those changes
+  go to JPA explorer -> click + -> all new actions -> generate DDL by entities -> intiatlize if 1st time else create diff
+  since we went for Initialize, clear the existing db, flyway will create V1_.sql file from which db creation will happen and jpa will just validate.
+  JPA wont be involved in any DDl changes.
