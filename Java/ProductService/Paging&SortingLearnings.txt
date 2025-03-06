@@ -1,0 +1,25 @@
+ask GPT for common pagination interview questions
+
+✅Search service can be of 2 types -
+Get -
+    Pros - easy to share(copy paste URL) a product to friend, URL can be cached at LB and lightweight
+    cons - can't be used for complex queries and to send large data(earlier url length was limited)
+Post -
+    Pros - can be used for complex queries and can be used to send large data
+    cons - can't be cached at LB and can't be shared easily
+
+✅Page - Spring JPA supports inbuilt pagination
+
+if consider filtering attributes, then we will have to write native query in JPA repository, we can't use
+hibernate methods as filters can be dynamic and method construction for each kind needs to be defined.
+For this case, we are considering without filtering attributes.
+
+mistakes -
+sort.and(Sort.by(sortPair[0]));
+✅Sort.and() method does not modify the existing Sort object. it returns a new Sort object,store the result
+sort=sort.and(Sort.by(sortPair[0]));
+
+✅dynamic sorting can also be done by-
+List<Sort.Order> orders = new ArrayList<>();
+orders.add(new Sort.Order(Sort.Direction.DESC, "price"));
+Pageable pageable = PageRequest.of(page, size, Sort.by(orders));

@@ -27,7 +27,7 @@ public class ProductServiceDBImpl implements ProductService{
 
     @Override
     public Product createProduct(Product product) throws ProductAlreadyExistsException{
-        if(productRepository.findByTitle(product.getTitle()).isPresent()){
+        if(productRepository.findByName(product.getTitle()).isPresent()){
             throw new ProductAlreadyExistsException("Product already exists, please update product");
         }
         Optional<Category> category=categoryRepository.findByName(product.getCategory().getName());
