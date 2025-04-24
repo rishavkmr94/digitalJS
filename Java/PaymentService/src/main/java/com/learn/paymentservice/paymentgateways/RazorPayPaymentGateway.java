@@ -34,7 +34,8 @@ public class RazorPayPaymentGateway implements IPaymentGateway {
         paymentLinkRequest.put("notify", notify);
         paymentLinkRequest.put("expire_by", (System.currentTimeMillis()/1000)+(20*60));
         paymentLinkRequest.put("reminder_enable", true);
-
+        paymentLinkRequest.put("callback_url", "https://example-callback-url.com/");
+        paymentLinkRequest.put("callback_method", "get");
         PaymentLink paymentLink = razorpayClient.paymentLink.create(paymentLinkRequest);
 
         // Return the generated link

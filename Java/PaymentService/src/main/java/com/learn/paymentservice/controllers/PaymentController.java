@@ -3,6 +3,7 @@ package com.learn.paymentservice.controllers;
 import com.learn.paymentservice.dtos.InitPaymentRequestDto;
 import com.learn.paymentservice.paymentgateways.PaymentGateWaySelector;
 import com.razorpay.RazorpayException;
+import com.stripe.exception.StripeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ public class PaymentController {
     private PaymentGateWaySelector paymentGateWaySelector;
 
     @PostMapping("/initiate")
-    public String initiatePayment(@RequestBody InitPaymentRequestDto initPaymentRequestDto) throws RazorpayException {
+    public String initiatePayment(@RequestBody InitPaymentRequestDto initPaymentRequestDto) throws RazorpayException, StripeException {
         return paymentGateWaySelector.createStandardPaymentLink(
                 initPaymentRequestDto.getAmount(),
                 initPaymentRequestDto.getName(),

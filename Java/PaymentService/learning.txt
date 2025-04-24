@@ -1,0 +1,3 @@
+WEBHOOK - for the case of stripepayments, the page is valid till 5 mins but the order in amazon is valid till 20 mins
+         in this left 15 mins window, if stripe get amount, it will inform amazon via WEBHOOK
+         vice-versa can't happen as amazon has lots of request and stripe will get throttled
