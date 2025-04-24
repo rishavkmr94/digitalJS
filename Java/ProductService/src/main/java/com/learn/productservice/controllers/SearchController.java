@@ -2,10 +2,12 @@ package com.learn.productservice.controllers;
 
 import com.learn.productservice.models.Product;
 import com.learn.productservice.services.searchservices.ISearchService;
-import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class SearchController {
     //sample request
     //GET /products/search?pageSize=3&pageCount=1&queryName=rishav&sorts=price:asc,name:desc
 
-    private ISearchService searchService;
+    private final ISearchService searchService;
 
     @Autowired
     public SearchController(ISearchService searchService) {
