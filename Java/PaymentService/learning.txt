@@ -3,3 +3,4 @@ WEBHOOK - for the case of stripepayments, the page is valid till 5 mins but the 
          vice-versa can't happen as amazon has lots of request and stripe will get throttled
 
 To expose our local host api to internet through secure tunnel, we can use ngrok.
+https://ngrok.com/downloads/mac-os
