@@ -1,5 +1,6 @@
 package com.learn.userauthentication.advices;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.learn.userauthentication.exceptions.InvalidPasswordException;
 import com.learn.userauthentication.exceptions.UserAlreadyExistsException;
 import com.learn.userauthentication.exceptions.UserDoesNotExistException;
@@ -17,6 +18,12 @@ public class ExceptionAdvices {
     private final Map<String,String> responseMap;
     public ExceptionAdvices() {
         responseMap = new HashMap<>();
+    }
+
+    @ExceptionHandler(JsonProcessingException.class)
+    public ResponseEntity<Map<String,String>> handleJsonProcessingException(JsonProcessingException ex, WebRequest webRequest){
+        responseMap.put("message",ex.getMessage());
+        return new ResponseEntity<>(responseMap, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)

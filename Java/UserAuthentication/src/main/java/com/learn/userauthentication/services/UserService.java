@@ -1,5 +1,9 @@
 package com.learn.userauthentication.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learn.userauthentication.clients.KafKaProducerClient;
+import com.learn.userauthentication.dtos.EmailDto;
 import com.learn.userauthentication.exceptions.InvalidPasswordException;
 import com.learn.userauthentication.exceptions.UserAlreadyExistsException;
 import com.learn.userauthentication.exceptions.UserDoesNotExistException;
@@ -9,6 +13,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.MacAlgorithm;
 import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,22 +22,38 @@ import java.util.*;
 
 @Service
 public class UserService implements IUserService{
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userRepository = userRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private KafKaProducerClient kafKaProducerClient;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Value("${kafkaIntegration.email.from}")
+    private String from;
 
     @Override
-    public User signUp(User user) throws UserAlreadyExistsException {
+    public User signUp(User user) throws UserAlreadyExistsException, JsonProcessingException {
         Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
         if (userOptional.isPresent()) {
             throw new UserAlreadyExistsException("user already exists, try logging in");
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User user1= userRepository.save(user);
+
+        // send message to kafka
+        EmailDto emailDto = new EmailDto();
+        emailDto.setFrom(from);
+        emailDto.setTo(user.getEmail());
+        emailDto.setSubject("Welcome to our service");
+        emailDto.setBody("Hello "+user1.getEmail()+",\n\nWelcome to our service! We are glad to have you on board.\n\nBest regards,\nThe Team");
+        kafKaProducerClient.sendMessage("UserSignUp", objectMapper.writeValueAsString(emailDto));
+        return user;
     }
 
     @Override
