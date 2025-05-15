@@ -1,0 +1,12 @@
+1. SMTP server is used to send emails with TLS authentication
+
+2. @KafkaListener(topics = "UserSignUp", groupId = "email-service")
+
+` topic is the event we passed at producer side
+` groupId is very Imp as it is used to identify the consumer group
+    - if we have multiple consumers with same groupId, then only one of them will receive the message and it will get
+        blocked for others.
+    - if group id is not provided then spring auto creates a group id.
+
+3. while providing sender's email id and password, google does'nt accept normal password
+    https://myaccount.google.com/apppasswords - to create app password and use
