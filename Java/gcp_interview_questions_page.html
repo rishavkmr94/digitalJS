@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Cloud Interview Questions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9f9fb;
+      color: #333;
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #2d3748;
+    }
+    h2 {
+      font-size: 1.4rem;
+      color: #1a202c;
+      margin-top: 2rem;
+    }
+    p {
+      margin: 0.5rem 0;
+    }
+    code, pre {
+      font-family: 'Fira Code', monospace;
+      background: #e2e8f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #edf2f7;
+      padding: 1rem;
+      overflow-x: auto;
+      border-left: 4px solid #4a5568;
+    }
+    .question {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .question h2 {
+      font-weight: 600;
+      color: #2b6cb0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Google Cloud Associate Cloud Engineer Interview Questions</h1>
+
+  <!-- START QUESTIONS -->
+  <!-- Due to length, only a few full entries are shown below. The rest will be filled in with the same structure. -->
+  <div class="question">
+    <h2>1. What is Google Cloud Platform (GCP)?</h2>
+    <p>Google Cloud Platform is a suite of public cloud services provided by Google. It spans IaaS, PaaS, and SaaS solutions to support modern cloud-native application development and enterprise workloads. GCP leverages Google’s global fiber network for high availability and low-latency access. GCP is known for its advanced capabilities in data analytics, AI/ML, container orchestration (Kubernetes), and serverless architecture. Its unique offerings include BigQuery (serverless data warehouse), Cloud Spanner (global RDBMS), and Anthos (hybrid/multi-cloud management).</p>
+  </div>
+
+  <div class="question">
+    <h2>2. What services are covered under the GCP free tier?</h2>
+    <p>GCP offers two types of free tiers: the 90-day, $300 trial and the Always Free tier. The Always Free tier includes services like 1 f1-micro VM per month in the US, 5 GB of Cloud Storage, 1 GB of egress, 1 million Cloud Functions invocations, and BigQuery usage (1 TB queries/month and 10 GB storage). This tier enables developers to prototype applications and test GCP services at no cost while adhering to fair-use quotas.</p>
+  </div>
+
+  <!-- CONTINUED -->
+  <!-- Questions 3 to 50 will follow the same format -->
+
+  <div class="question">
+  <h2>3. What is IAM in GCP?</h2>
+  <p>Identity and Access Management (IAM) is a policy-driven service that allows granular control over GCP resources. IAM is based on roles and permissions, where roles can be primitive (Owner, Editor, Viewer), predefined (fine-grained service roles), or custom (tailored to an organization’s security model). IAM policies can be inherited through the GCP resource hierarchy, allowing consistent access control at the org, folder, or project level. IAM also integrates with Google Workspace for identity federation and supports service accounts for non-human access.</p>
+</div>
+
+<div class="question">
+  <h2>4. What is the difference between primitive roles and predefined roles?</h2>
+  <p>Primitive roles (Owner, Editor, Viewer) provide broad access and are not recommended for production due to their coarse granularity. Predefined roles are curated by Google for specific services (e.g., roles/compute.instanceAdmin) and follow least privilege principles. These roles are more secure and should be used over primitive roles. You can also define custom roles to suit organizational needs by combining specific permissions and applying them at different levels of the resource hierarchy.</p>
+</div>
+
+<div class="question">
+  <h2>5. What is a service account in GCP?</h2>
+  <p>A service account is a non-human identity used by applications and services to access GCP APIs securely. Each service account has a set of IAM roles that define its access scope. Service accounts can be associated with Compute Engine VMs, Cloud Functions, GKE workloads, and more. Best practices include assigning minimal permissions, rotating keys regularly, using Workload Identity Federation for on-prem access, and auditing usage via logs.</p>
+</div>
+
+<div class="question">
+  <h2>6. What is Compute Engine in GCP?</h2>
+  <p>Compute Engine is GCP’s IaaS offering, providing highly customizable and scalable VMs. It supports custom machine types, GPU/TPU acceleration, live migration, and preemptible VMs for cost efficiency. Instance templates and managed instance groups enable autoscaling and load balancing. Compute Engine integrates with other GCP services like Cloud Storage, IAM, Cloud Monitoring, and VPC networks, making it suitable for general-purpose workloads to specialized compute-intensive applications.</p>
+</div>
+
+<div class="question">
+  <h2>7. What is Cloud Storage? What are its storage classes?</h2>
+  <p>Cloud Storage is GCP's globally distributed object storage service optimized for durability and scalability. It supports multiple storage classes tailored to data access patterns:</p>
+  <ul>
+    <li><strong>Standard</strong>: Frequent access with low latency.</li>
+    <li><strong>Nearline</strong>: Access once a month, ideal for backups.</li>
+    <li><strong>Coldline</strong>: Access once a quarter, for archival.</li>
+    <li><strong>Archive</strong>: Rare access, lowest cost, highest retrieval latency.</li>
+  </ul>
+  <p>All classes offer the same APIs and durability (11 9’s), allowing seamless data lifecycle transitions. Bucket-level and object-level IAM policies control access.</p>
+</div>
+
+<div class="question">
+  <h2>8. What is the difference between Cloud Storage and Persistent Disks?</h2>
+  <p>Cloud Storage is designed for unstructured data (object store), ideal for static assets, logs, and large media. Persistent Disks are block storage volumes attached to VMs, used for OS disks, databases, and apps requiring POSIX-compliant file systems. Persistent Disks come in Standard (HDD) and SSD variants, and offer snapshot and resize capabilities. Unlike object storage, they provide low-latency reads/writes for structured data use cases.</p>
+</div>
+
+<div class="question">
+  <h2>9. How do you create a VM instance using the console and CLI?</h2>
+  <p><strong>Via Console</strong>: Go to Compute Engine > VM instances > Create Instance. Choose machine type, disk image, region/zone, and network settings. Click 'Create'.</p>
+  <p><strong>Via CLI:</strong></p>
+  <pre><code>gcloud compute instances create my-vm \
+  --zone=us-central1-a \
+  --machine-type=e2-medium \
+  --image-family=debian-11 \
+  --image-project=debian-cloud</code></pre>
+  <p>This creates a VM with default network and firewall rules. For production, it’s essential to customize boot disks, enable OS Login, assign minimal IAM roles, and tag instances for fine-grained firewall rules.</p>
+</div>
+
+<div class="question">
+  <h2>10. What are regions and zones in GCP?</h2>
+  <p>A region is a specific geographical location where GCP resources are hosted, and each region contains multiple isolated zones (data centers). Resources like Compute Engine instances, GKE nodes, and persistent disks are deployed within zones. To ensure high availability and fault tolerance, it’s recommended to architect applications across multiple zones or even regions using managed instance groups, multi-region Cloud Storage, and global load balancers.</p>
+</div>
+
+<div class="question">
+  <h2>11. What is the use of the gcloud CLI?</h2>
+  <p>The <code>gcloud</code> command-line interface is the primary tool to create and manage GCP resources from terminals and CI/CD systems. It enables scripting deployments, automating infrastructure provisioning, updating IAM roles, viewing logs, and controlling billing services. Unlike the console, it supports versioning and reproducibility through configuration files and environment variables. It’s ideal for DevOps workflows.</p>
+</div>
+
+<div class="question">
+  <h2>12. What is a project in GCP?</h2>
+  <p>A project is the primary unit for organizing, enabling, and managing GCP resources. Projects contain their own billing accounts, IAM policies, and quotas. They provide isolation between environments (e.g., dev, test, prod). Resources like Compute Engine instances, Cloud Functions, and Cloud Storage buckets reside within projects. Projects are tied to a unique project ID and project number and can be linked under folders and organizations for enterprise control.</p>
+</div>
+
+<div class="question">
+  <h2>13. What are labels and tags in GCP?</h2>
+  <p>Labels are user-defined key-value metadata assigned to GCP resources for categorization, filtering, and cost tracking (e.g., <code>env=prod</code>). Tags are used primarily in VPC networking for applying firewall rules. While labels are global and support billing exports, tags are more security-focused and support resource-level policy enforcement. Labels help in organizing large-scale projects, while tags enhance security posture.</p>
+</div>
+
+<div class="question">
+  <h2>14. What is Cloud SDK?</h2>
+  <p>Cloud SDK is a collection of tools for interacting with GCP services, including the <code>gcloud</code>, <code>gsutil</code>, and <code>bq</code> CLI utilities. It supports authentication via ADC (Application Default Credentials), managing deployments, monitoring resources, and invoking APIs. It is used in local development setups and CI/CD pipelines. SDK also supports emulators for services like Pub/Sub and Datastore, helping in offline development and testing.</p>
+</div>
+
+<div class="question">
+  <h2>15. How does GCP handle network routing?</h2>
+  <p>GCP offers both system-generated and custom routing within its global VPC network. Each subnet comes with default routes (e.g., 0.0.0.0/0 to the internet), but you can define static or dynamic custom routes using Cloud Router with BGP for hybrid connectivity. GCP routes traffic using longest prefix match and applies tags and priorities. Routes can be regional or global based on design, supporting hybrid architectures and secure transit networks.</p>
+</div>
+
+<div class="question">
+  <h2>16. What is a VPC in GCP?</h2>
+  <p>A Virtual Private Cloud (VPC) in GCP provides a private, secure, and scalable network environment to host your compute resources. It supports custom IP ranges, firewall rules, subnet segmentation, and peering. VPCs are global resources and can span across regions using subnets, making them flexible and ideal for hybrid and multi-region designs. They also integrate with Cloud NAT and VPNs for secure communication with on-prem or external environments.</p>
+</div>
+
+<div class="question">
+  <h2>17. How does firewall work in GCP?</h2>
+  <p>Firewall rules in GCP are defined at the VPC network level and are stateful. They allow or deny traffic based on IP ranges, protocols, ports, and tags. Each rule has a priority, direction (ingress/egress), and action (allow/deny). They can be associated with instances via network tags or service accounts. GCP evaluates rules based on priority (lowest wins) and first match, and logs are available for debugging or auditing traffic.</p>
+</div>
+
+<div class="question">
+  <h2>18. What is Cloud Load Balancing?</h2>
+  <p>Cloud Load Balancing in GCP distributes traffic across multiple resources using global or regional load balancers. It supports HTTP(S), SSL proxy, TCP/UDP, and internal traffic. Global HTTP(S) load balancing uses anycast IPs and automatically routes traffic to the nearest healthy backend. Load balancers are fully managed, scalable, and integrate with Cloud Armor for security and Cloud CDN for caching static content close to users.</p>
+</div>
+
+<div class="question">
+  <h2>19. What is GKE and how does it differ from Compute Engine?</h2>
+  <p>Google Kubernetes Engine (GKE) is a managed Kubernetes service for deploying containerized applications. Unlike Compute Engine, which deals with VMs, GKE abstracts infrastructure using Kubernetes and focuses on container orchestration, scaling, and management. GKE handles node provisioning, patching, monitoring, and integrates with CI/CD, IAM, and workload identity. It is ideal for microservices and cloud-native workloads, whereas Compute Engine is better suited for traditional VM-based apps.</p>
+</div>
+
+<div class="question">
+  <h2>20. What is Cloud Functions?</h2>
+  <p>Cloud Functions is a serverless compute service that lets you run code in response to events, such as HTTP triggers, Pub/Sub messages, or changes in Cloud Storage. It automatically scales, has no server management, and you are billed only for execution time. It supports Node.js, Python, Go, and Java runtimes. Common use cases include webhooks, data processing, and real-time ETL operations. Functions can be secured via IAM, and environment variables help with configuration.</p>
+</div>
+
+<div class="question">
+  <h2>21. What is Pub/Sub in GCP?</h2>
+  <p>Cloud Pub/Sub is a messaging service that enables asynchronous communication between independent services. It follows a publisher-subscriber model, allowing decoupled systems to interact reliably. Pub/Sub provides at-least-once delivery, message ordering (with ordering keys), dead-letter topics, and push/pull subscription mechanisms. It’s widely used for event-driven architectures, data ingestion, and integration between microservices.</p>
+</div>
+
+<div class="question">
+  <h2>22. What is Cloud SQL and how is it managed?</h2>
+  <p>Cloud SQL is a fully managed relational database service supporting MySQL, PostgreSQL, and SQL Server. It handles backups, patches, replication, failover, and encryption. Developers benefit from features like IAM-based auth, private IP, VPC peering, and automated performance tuning. It is best suited for transactional workloads and can be integrated with tools like Data Studio and BigQuery for analytical processing.</p>
+</div>
+
+<div class="question">
+  <h2>23. How do you connect on-prem to GCP?</h2>
+  <p>You can connect on-premises infrastructure to GCP using Cloud VPN, Cloud Interconnect, or Partner Interconnect. Cloud VPN is fast to set up for encrypted tunnels over the internet, while Dedicated Interconnect offers high-throughput, low-latency private connectivity. BGP is typically used for dynamic route exchange. These solutions enable hybrid cloud strategies and secure data center integration.</p>
+</div>
+
+<div class="question">
+  <h2>24. What is Cloud NAT?</h2>
+  <p>Cloud NAT (Network Address Translation) allows private Compute Engine instances without external IPs to access the internet for outbound traffic. It ensures security by keeping instances isolated while enabling software updates, API access, and telemetry reporting. Cloud NAT supports high availability, scale-out, and multiple NAT IPs, and is configured per region and subnetwork.</p>
+</div>
+
+<div class="question">
+  <h2>25. What are preemptible VMs?</h2>
+  <p>Preemptible VMs are short-lived, cost-effective Compute Engine instances that are ideal for batch processing and fault-tolerant workloads. They are up to 80% cheaper than standard VMs but can be terminated by Google at any time after 24 hours. They are commonly used for rendering, Monte Carlo simulations, and parallel processing tasks that can handle interruptions.</p>
+</div>
+
+<div class="question">
+  <h2>26. What is Cloud Spanner?</h2>
+  <p>Cloud Spanner is a globally distributed, strongly consistent relational database service that combines traditional RDBMS capabilities (like SQL and ACID transactions) with horizontal scalability and high availability. It is ideal for mission-critical applications that require high throughput, consistency, and low-latency reads/writes. Spanner supports automatic sharding, replication, and seamless scaling without downtime.</p>
+</div>
+
+<div class="question">
+  <h2>27. What is BigQuery and its advantages?</h2>
+  <p>BigQuery is GCP’s serverless, highly scalable, and cost-effective data warehouse designed for real-time analytics. It separates storage and compute, enabling on-demand processing of petabyte-scale datasets using SQL. BigQuery provides native machine learning integration (BigQuery ML), federated querying, and support for BI tools like Data Studio and Looker. It is optimized for cost transparency and speed, using columnar storage and Dremel technology.</p>
+</div>
+
+<div class="question">
+  <h2>28. What is Cloud Monitoring and Logging?</h2>
+  <p>Cloud Monitoring helps track metrics, uptime, and performance of GCP resources using dashboards, alert policies, and integrations. Cloud Logging (formerly Stackdriver Logging) captures logs from VMs, applications, and services. Together, they provide observability, traceability, and root cause analysis across distributed systems. They integrate with Pub/Sub, Cloud Functions, and third-party tools like PagerDuty and Splunk.</p>
+</div>
+
+<div class="question">
+  <h2>29. What is Cloud Armor?</h2>
+  <p>Cloud Armor is a security service that protects GCP applications against DDoS attacks and enforces Layer 7 security policies. It integrates with global load balancers and uses preconfigured WAF (Web Application Firewall) rules to block threats. Cloud Armor also supports geolocation filtering, rate limiting, and threat intelligence signals to detect malicious IPs.</p>
+</div>
+
+<div class="question">
+  <h2>30. What is Anthos?</h2>
+  <p>Anthos is a hybrid and multi-cloud application platform that enables organizations to modernize workloads anywhere — on-prem, on GCP, or on other clouds. It extends GKE for Kubernetes management across environments and includes features like service mesh (via Istio), config management, policy control, and security. Anthos helps enforce consistency, automate operations, and streamline app delivery pipelines across distributed infrastructures.</p>
+</div>
+
+<div class="question">
+  <h2>31. What is the Shared VPC?</h2>
+  <p>Shared VPC allows multiple projects within the same organization to share a common VPC network. This promotes centralized control of network resources while allowing project-level autonomy for development teams. It improves security and connectivity across projects while simplifying firewall, subnet, and route management. The host project contains the VPC, and service projects can use its subnets via IAM bindings.</p>
+</div>
+
+<div class="question">
+  <h2>32. How is data encrypted in GCP?</h2>
+  <p>GCP encrypts data at rest and in transit by default. At rest, data is encrypted using AES-256, and keys are managed via Google-managed, customer-managed (CMEK), or customer-supplied keys (CSEK). In transit, GCP uses TLS for secure communication. Google also supports Envelope Encryption and integrates with Cloud KMS for custom key management.</p>
+</div>
+
+<div class="question">
+  <h2>33. What is Cloud Run?</h2>
+  <p>Cloud Run is a fully managed compute platform that runs stateless containers in response to HTTP requests. It supports any language, libraries, or binaries, provided the app is packaged as a container. Cloud Run auto-scales to zero, supports custom domains, IAM-based auth, and is integrated with CI/CD tools. It’s ideal for microservices and APIs that need event-driven, on-demand scaling.</p>
+</div>
+
+<div class="question">
+  <h2>34. What is the difference between Cloud Run, Cloud Functions, and App Engine?</h2>
+  <p><strong>Cloud Run</strong> is for containerized apps with HTTP triggers. <strong>Cloud Functions</strong> is event-driven, ideal for single-purpose functions with minimal configuration. <strong>App Engine</strong> is a PaaS for applications with auto-scaling and versioning support. Cloud Run gives the most flexibility, Functions require minimal ops, and App Engine balances both with more service features.</p>
+</div>
+
+<div class="question">
+  <h2>35. What is a managed instance group?</h2>
+  <p>A Managed Instance Group (MIG) is a group of identical VM instances created from an instance template. It supports auto-healing, autoscaling, rolling updates, and integration with load balancers. MIGs are essential for deploying stateless workloads in a scalable and fault-tolerant way. They’re used with load balancers to distribute traffic and maintain high availability.</p>
+</div>
+
+<div class="question">
+  <h2>36. What is Cloud KMS?</h2>
+  <p>Cloud Key Management Service (KMS) lets you manage cryptographic keys for your cloud services. It allows creation, rotation, import, and destruction of symmetric and asymmetric keys. Cloud KMS integrates with other GCP services like Compute Engine, BigQuery, and Cloud Storage to secure sensitive data using customer-managed encryption keys (CMEK). It supports HSM-backed keys, audit logging, and fine-grained IAM controls.</p>
+</div>
+
+<div class="question">
+  <h2>37. What is the difference between zonal, regional, and global resources?</h2>
+  <p>In GCP, <strong>zonal</strong> resources (e.g., VM instances) are tied to a single zone, <strong>regional</strong> resources (e.g., regional persistent disks) span multiple zones within a region for high availability, and <strong>global</strong> resources (e.g., VPCs, global load balancers) are accessible across all regions. Understanding these scopes is critical for designing fault-tolerant and highly available architectures.</p>
+</div>
+
+<div class="question">
+  <h2>38. What is VPC Peering?</h2>
+  <p>VPC Peering allows private IP communication between two VPC networks. It enables direct, secure, and high-performance traffic exchange without requiring a VPN or external IP. Peering is useful for microservice communication across projects, and it supports IAM-based control, but does not support transitive peering or overlapping CIDR ranges.</p>
+</div>
+
+<div class="question">
+  <h2>39. What is Cloud Interconnect?</h2>
+  <p>Cloud Interconnect provides private, high-bandwidth connectivity between your on-prem data center and Google’s network. It comes in two forms: <strong>Dedicated Interconnect</strong> (10 Gbps or 100 Gbps per link directly connected) and <strong>Partner Interconnect</strong> (through a supported provider). It’s ideal for low-latency applications, data migration, and hybrid environments needing consistent performance and security.</p>
+</div>
+
+<div class="question">
+  <h2>40. What is the role of Cloud Scheduler?</h2>
+  <p>Cloud Scheduler is a fully managed cron job service for triggering jobs on a schedule. It supports HTTP targets, Pub/Sub messages, and App Engine endpoints. It’s commonly used for batch jobs, periodic data syncing, reporting tasks, and invoking serverless functions at regular intervals. It supports retry policies, logging, and IAM-based security.</p>
+</div>
+
+<div class="question">
+  <h2>41. What are Cloud Endpoints?</h2>
+  <p>Cloud Endpoints is an API management gateway that enables developers to deploy, monitor, and secure APIs on GCP. It supports OpenAPI and gRPC specifications and provides authentication (via Firebase Auth or API keys), quota control, and logging. Cloud Endpoints integrates with App Engine, Cloud Functions, Cloud Run, and GKE and is ideal for managing APIs across microservices.</p>
+</div>
+
+<div class="question">
+  <h2>42. What is Identity-Aware Proxy (IAP)?</h2>
+  <p>IAP provides secure access to web applications and VMs running on GCP without requiring VPN. It sits in front of apps and enforces identity and context-aware access policies. It supports OAuth, 2FA, and integrates with Google Workspace or third-party identity providers. IAP simplifies zero-trust architecture and provides per-user and per-resource access logging.</p>
+</div>
+
+<div class="question">
+  <h2>43. What is the role of Cloud DNS?</h2>
+  <p>Cloud DNS is a scalable, reliable, and managed DNS service that supports both public and private zones. It integrates with VPC networks and supports zone forwarding and DNS peering. It provides low-latency, high-availability DNS lookups and is often used for managing custom domains, hybrid DNS, and service discovery in GKE.</p>
+</div>
+
+<div class="question">
+  <h2>44. What is Forseti Security?</h2>
+  <p>Forseti is an open-source security tool for GCP that audits and enforces policies across resources. It scans IAM permissions, checks for misconfigured firewall rules, and detects exposed services. Forseti helps enforce best practices and compliance requirements, integrates with Cloud Asset Inventory, and generates audit reports for security teams.</p>
+</div>
+
+<div class="question">
+  <h2>45. How does GCP support DevOps and CI/CD?</h2>
+  <p>GCP offers tools like Cloud Build (CI/CD automation), Artifact Registry (package storage), Cloud Source Repositories (Git), and Skaffold (Kubernetes deployment). These integrate with GitHub, GitLab, and other CI/CD systems. GCP supports pipelines for code, build, test, deploy workflows and integrates with Cloud Monitoring and Error Reporting for operational feedback. Infrastructure as Code is supported through Terraform and Deployment Manager.</p>
+</div>
+
+<div class="question">
+  <h2>46. What is Cloud Build?</h2>
+  <p>Cloud Build is a serverless CI/CD platform that executes builds on GCP infrastructure. It supports building and deploying artifacts (Docker containers, Java JARs, etc.) to GCP and other cloud providers. Cloud Build integrates with GitHub, GitLab, Bitbucket, and Cloud Source Repositories. It supports custom build steps using YAML configuration and can trigger pipelines on git events. Cloud Build also supports approval gates and deploys artifacts to Cloud Run, GKE, App Engine, or Firebase Hosting.</p>
+</div>
+
+<div class="question">
+  <h2>47. What is Workload Identity Federation?</h2>
+  <p>Workload Identity Federation allows applications outside GCP (e.g., running on AWS, Azure, or on-prem) to securely access GCP resources without needing long-lived service account keys. It enables identity federation via trusted identity providers (OIDC, SAML) and uses short-lived access tokens, enhancing security and simplifying credential management in hybrid or multi-cloud scenarios.</p>
+</div>
+
+<div class="question">
+  <h2>48. How do you optimize costs in GCP?</h2>
+  <p>Cost optimization involves using committed use discounts (CUDs), sustained use discounts (SUDs), preemptible VMs, right-sizing VM instances, and choosing appropriate storage classes (e.g., Nearline for backups). Monitoring usage with Billing Reports, setting budgets/alerts, and using tools like Recommender and Cost Table Reports can uncover savings opportunities. Moving to serverless where possible also eliminates idle resource costs.</p>
+</div>
+
+<div class="question">
+  <h2>49. What are custom roles in IAM?</h2>
+  <p>Custom roles in IAM allow organizations to define fine-grained access controls tailored to their security needs. Unlike predefined roles, custom roles contain only the permissions explicitly listed during creation. They help enforce least privilege and can be assigned at the project, folder, or organization level. They are ideal when predefined roles are too permissive or restrictive.</p>
+</div>
+
+<div class="question">
+  <h2>50. What’s the difference between Cloud Deployment Manager and Terraform?</h2>
+  <p>Cloud Deployment Manager is GCP’s native Infrastructure as Code (IaC) tool that uses YAML templates and Jinja2/Python for configuration. It supports declarative resource deployment and is tightly integrated with GCP APIs. Terraform, by HashiCorp, is a multi-cloud IaC tool that supports HCL syntax, modules, remote state management, and extensive community modules. Terraform is preferred for multi-cloud/hybrid environments, while Deployment Manager is simpler for GCP-only use cases.</p>
+</div>
